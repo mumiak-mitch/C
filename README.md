@@ -1,6 +1,6 @@
 # C programming language fundamentals
 
-*Introduction*
+### Introduction
 C is a general-purpose language used to write everything.
 C is a low-level language and understanding how computer memory works is important.
 
@@ -32,14 +32,14 @@ How to get user input
 How to get user output
     gets(), putchar(), scanf()
 
-*Conditionals and loops*
+### Conditionals and loops
 if expression
 conditional expressions
 switch expression
 Loops
     while loop, for loop, do while loop
 
-*Functions, array and pointers*
+### Functions, array and pointers
 A function is a block of code that performs a specific task.
 It is reusable.
 It makes a program easy to test.
@@ -56,7 +56,7 @@ C id designed to be a low-level language that can easily access memory locations
 A memory address is given a hexadecimal number.
 A pointer is a variable that contains the address of another variable.
 
-*String*
+### String
 A string is an array of characters that ends with a NULL character '\0'.
 It uses the string.h library.
 sprintf(): it builds string from other data types.
