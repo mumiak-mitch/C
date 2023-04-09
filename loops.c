@@ -18,6 +18,7 @@ int main() {
 
     return 0;*/
 
+    //for loop
     int i = 0;
     int max = 10;
 

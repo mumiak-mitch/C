@@ -1,3 +1,5 @@
+//This program verifies the fact of odd numbers
+
 #include <stdio.h>
 
 int main() {
