@@ -1,6 +1,6 @@
 # C programming language fundamentals
 
-### Introduction
+## Introduction
 C is a general-purpose language used to write everything.
 
 C is a low-level language and understanding how computer memory works is important.
@@ -26,7 +26,8 @@ How to get user input: getchar(), address operator &, scanf()
 
 How to get user output: gets(), putchar(), scanf()
 
-### Conditionals and loops
+
+## Conditionals and loops
 if expression
 
 conditional expressions
@@ -35,7 +36,8 @@ switch expression
 
 Loops: while loop, for loop, do while loop
 
-### Functions, array and pointers
+
+## Functions, array and pointers
 A function is a block of code that performs a specific task. It is reusable. It makes a program easy to test. It can be modified without changing the calling program.
 
 Variable scope refers to the visibility of variables within a program. Static variables have a local scope but are not destroyed when a function is exited.
@@ -46,7 +48,8 @@ An array is a data structure that stores a collection of values that are of the 
 
 C is designed to be a low-level language that can easily access memory locations and perform memory-related operations. A memory address is given a hexadecimal number. A pointer is a variable that contains the address of another variable.
 
-### String
+
+## String
 A string is an array of characters that ends with a NULL character '\0'.
 
 It uses the string.h library.
