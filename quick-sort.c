@@ -1,43 +1,78 @@
-/*quick sort is a highly efficient sorting technique that
-divides a large data array into smaller ones*/
-
 #include<stdio.h>
-#include<conio.h>
 
-void quick(int a[10],int lb,int n);
-void main() {
-    int n,i,a[10];
+// Function prototype for quick sort
+void quickSort(int a[], int low, int high);
 
-    printf("enter how many elements \n"); scanf("%d",&n);
-    printf("enter the elements \n"); for(i=0;i<n;i++) scanf("%d",&a[i]); quick(a,0,n-1);
-    printf("the sorted elements are \n"); for(i=0;i<n;i++)
-    printf("%d \n",a[i]); getch();
+// Function prototype for partitioning the array
+int partition(int a[], int low, int high);
+
+int main() {
+    int n, i, a[10];
+
+    // Input the number of elements
+    printf("Enter how many elements: ");
+    scanf("%d", &n);
+
+    // Input the elements
+    printf("Enter the elements: ");
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    // Perform quick sort
+    quickSort(a, 0, n - 1);
+
+    // Display the sorted elements
+    printf("The sorted elements are: ");
+    for(i = 0; i < n; i++)
+        printf("%d ", a[i]);
+
+    return 0;
 }
 
-void quick(int a[],int lb,int ub) {
-    int i,j,t,key;
-    
-    if(lb>ub) 
-        return; 
+// Function to perform quick sort
+void quickSort(int a[], int low, int high) {
+    int pivot;
 
-    i=lb;
-    j=ub;
-    key=lb;
+    if (low < high) {
+        // Partition the array into two halves
+        pivot = partition(a, low, high);
 
-    while(i<j) {
-        while(a[key]>a[i])
-            i++;
-        while(a[key]<a[j]) j--;
-            if(i<j) {
-                t=a[i];
-                a[i]=a[j];
-                a[j]=t;
-            }
+        // Recursive quick sort on the left and right halves
+        quickSort(a, low, pivot - 1);
+        quickSort(a, pivot + 1, high);
     }
-    
-    t=a[j];
-    a[j]=a[key];
-    a[key]=t;
-    quick(a,0,j-1);
-    quick(a,j+1,ub);
+}
+
+// Function to partition the array
+int partition(int a[], int low, int high) {
+    int pivot, i, j, temp;
+
+    pivot = low; // Choose the first element as the pivot
+    i = low;
+    j = high;
+
+    while (i < j) {
+        // Move the left pointer to the right until an element greater than the pivot is found
+        while (a[pivot] >= a[i] && i < high)
+            i++;
+
+        // Move the right pointer to the left until an element less than the pivot is found
+        while (a[pivot] < a[j])
+            j--;
+
+        // Swap the elements at i and j
+        if (i < j) {
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+    }
+
+    // Swap the pivot element with the element at position j
+    temp = a[pivot];
+    a[pivot] = a[j];
+    a[j] = temp;
+
+    // Return the position of the pivot element
+    return j;
 }

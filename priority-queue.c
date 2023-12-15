@@ -1,103 +1,116 @@
-/*This is a special type of queue in which each element
-is associated with a priority and is served according 
-to its priority*/
-
 #include<stdio.h>
-#include<conio.h>
-#include<malloc.h>
+#include<stdlib.h>
 
+// Node structure for priority queue
 typedef struct node {
     int priority;
     int info;
     struct node *link;
-} n;
+} Node;
 
-n *getnode() {
-    return ( (n *)malloc(sizeof(n)));
+// Function to create a new node
+Node *getnode() {
+    return ((Node *)malloc(sizeof(Node)));
 }
 
-n*front=NULL,*temp=NULL,*ptr=NULL,*q=NULL;
+// Global front pointer for the priority queue
+Node *front = NULL;
+
+// Function prototypes
 void insertion();
 void deletion();
 void display();
 
-void main() {
+int main() {
     int ch;
 
-    printf("\tMenu\n1.Insertion\n2.Deletion\n3.Display\n4.exit");
- 
+    // Menu
+    printf("\tMenu\n1.Insertion\n2.Deletion\n3.Display\n4.Exit");
+
     while(1) {
-        printf("Enter your choice");
-        scanf("%d",&ch);
- 
+        printf("\nEnter your choice: ");
+        scanf("%d", &ch);
+
         switch(ch) {
             case 1:
                 insertion();
-            break;
+                break;
 
             case 2:
                 deletion();
-            break;
+                break;
  
             case 3:
                 display();
-            break;
+                break;
  
-            default : 
+            case 4:
+                exit(0);
+
+            default:
                 printf("\nInvalid choice ");
-            break; 
+                break; 
         } 
     } 
+    return 0;
 }
 
+// Function to insert an element with priority into the priority queue
 void insertion() { 
     int item, item_prty;
  
-    temp=getnode();
-    printf("Enter item to insert ");
-    scanf("%d",&item);
-    printf("Enter item prority ");
-    scanf("%d",&item_prty);
-    temp->priority=item_prty;
-    temp->info=item;
+    // Create a new node
+    Node *temp = getnode();
+
+    printf("Enter item to insert: ");
+    scanf("%d", &item);
+    printf("Enter item priority: ");
+    scanf("%d", &item_prty);
+
+    temp->priority = item_prty;
+    temp->info = item;
  
-    if(front==NULL||item_prty>front->priority) {
-        temp->link=front;
-        front=temp;
+    // If the queue is empty or the new element has higher priority
+    if(front == NULL || item_prty > front->priority) {
+        temp->link = front;
+        front = temp;
     } else {
-        q=front;
+        Node *q = front;
         
-        while (q->link!=NULL &&q->link-> priority >=item_prty)
-            q=q->link;
-            temp->link=q->link;
-            q->link=temp;
+        // Traverse the queue to find the correct position based on priority
+        while (q->link != NULL && q->link->priority >= item_prty)
+            q = q->link;
+        
+        temp->link = q->link;
+        q->link = temp;
     }
 }
 
+// Function to delete an element from the priority queue
 void deletion() { 
-    if(front==NULL)
+    if(front == NULL)
         printf("Queue is underflow");
     else {
-        temp=front;
-        printf("Deleted item is %d\n",
-        temp->info);
-        front=front->link;
+        Node *temp = front;
+        printf("Deleted item is %d\n", temp->info);
+        front = front->link;
         free(temp);
     }
 }
 
+// Function to display the elements of the priority queue
 void display() {
-    ptr=front;
+    Node *ptr = front;
 
-    if(front==NULL)
+    if(front == NULL)
         printf("Queue is underflow");
     else {
         printf("Queue is :\n");
-        printf("priority item :\n");
+        printf("Priority Item :\n");
     
-        while(ptr!=NULL) {
-            printf("%5d %5d\n",ptr->priority,ptr->info);
-            ptr=ptr->link;
+        while(ptr != NULL) {
+            printf("%5d %5d\n", ptr->priority, ptr->info);
+            ptr = ptr->link;
         }
     }
 }

@@ -1,34 +1,48 @@
-/*Bubble sort is a straightforward sorting algorithm that checks 
-and swaps elements if they are not in the intended order*/
+#include <stdio.h>
 
-#include<stdio.h>
-#include<conio.h>
 #define TRUE 1
 #define FALSE 0
 
-void bubblesort(int x[],int n); 
+// Function to perform bubble sort on an array
+void bubblesort(int x[], int n);
 
-void main() {
-    int num[10],i,n;
+int main() {
+    int num[10], i, n;
 
-    printf("Enter the no of elements\n"); scanf("%d",&n);
-    printf("Enter the elements\n"); for(i=0;i<n;i++) scanf("%d",&num[i]); bubblesort(num,n);
-    printf("sorted elements are\n"); for(i=0;i<n;i++) printf("%d\t",num[i]);
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
 
-    getch();
+    printf("Enter the elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &num[i]);
+
+    bubblesort(num, n); // Call the bubblesort function to sort the array
+
+    printf("Sorted elements are:\n");
+    for (i = 0; i < n; i++)
+        printf("%d\t", num[i]);
+
+    getchar(); // Wait for a key press
+    return 0;
 }
 
-void bubblesort(int x[],int n){
-    int hold,j,pass,K=TRUE;
+// Function to perform bubble sort on an array
+void bubblesort(int x[], int n) {
+    int hold, j, pass, K = TRUE;
 
-    for(pass=0;pass<n-1&&K==TRUE;pass++){
-        K=FALSE;
+    // Outer loop for each pass
+    for (pass = 0; pass < n - 1 && K == TRUE; pass++) {
+        K = FALSE;
 
-        for(j=0;j<n-pass-1;j++) if(x[j]>x[j+1]){
-            K=TRUE;
-            hold=x[j];
-            x[j]=x[j+1];
-            x[j+1]=hold;
-        }
+        // Inner loop to compare and swap elements
+        for (j = 0; j < n - pass - 1; j++)
+            if (x[j] > x[j + 1]) {
+                K = TRUE;
+
+                // Swap elements if they are in the wrong order
+                hold = x[j];
+                x[j] = x[j + 1];
+                x[j + 1] = hold;
+            }
     }
 }

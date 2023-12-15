@@ -1,23 +1,26 @@
 #include <stdio.h>
 
 int main() {
+  // Declare three double variables
+  double num1, num2, num3;
 
-  double n1, n2, n3;
-
+  // Prompt the user to enter three different numbers
   printf("Enter three different numbers: ");
-  scanf("%lf %lf %lf", &n1, &n2, &n3);
+  scanf("%lf %lf %lf", &num1, &num2, &num3);
 
-  // if n1 is greater than both n2 and n3, n1 is the largest
-  if (n1 >= n2 && n1 >= n3)
-    printf("%.2f is the largest number.", n1);
+  // Check for the largest number among num1, num2, and num3
 
-  // if n2 is greater than both n1 and n3, n2 is the largest
-  if (n2 >= n1 && n2 >= n3)
-    printf("%.2f is the largest number.", n2);
+  // If num1 is greater than or equal to both num2 and num3, num1 is the largest
+  if (num1 >= num2 && num1 >= num3)
+    printf("%.2f is the largest number.", num1);
 
-  // if n3 is greater than both n1 and n2, n3 is the largest
-  if (n3 >= n1 && n3 >= n2)
-    printf("%.2f is the largest number.", n3);
+  // If num2 is greater than or equal to both num1 and num3, num2 is the largest
+  if (num2 >= num1 && num2 >= num3)
+    printf("%.2f is the largest number.", num2);
+
+  // If num3 is greater than or equal to both num1 and num2, num3 is the largest
+  if (num3 >= num1 && num3 >= num2)
+    printf("%.2f is the largest number.", num3);
 
   return 0;
 }

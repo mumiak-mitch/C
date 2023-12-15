@@ -2,27 +2,27 @@
 #include <stdlib.h>
 
 int main() {
-    //int count = 1;
-
-    //while loop
-    /*while(count < 8) {
+    // Example using a while loop
+    int count = 1;
+    while (count < 8) {
         printf("Count = %d\n", count);
         count++;
-    }*/
+    }
 
-    //do while
-    /*do {
-        printf("Count = %d\n", count);
-        count++;
-    } while (count < 8);
+    // Example using a do-while loop
+    int num = 1;
+    do {
+        printf("Count = %d\n", num);
+        num++;
+    } while (num < 8);
 
-    return 0;*/
-
-    //for loop
+    // Example using a for loop
     int i = 0;
     int max = 10;
 
-    for (;i < max; i++){
+    for (; i < max; i++) {
         printf("%d\n", i);
     }
+
+    return 0;
 }

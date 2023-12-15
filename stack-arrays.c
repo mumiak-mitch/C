@@ -1,77 +1,91 @@
-/*A stack is a type of linear data structure that is represented 
-by a collection of pieces that are arranged in a predetermined
-sequence.
-An array is a collection of data values that are associated to
-one another and termed elements.*/
+#include <stdio.h>
+#include <stdlib.h>
 
-#include<stdio.h>
-#include<conio.h>
-#include<process.h>
+#define MAX_SIZE 20
 
-int ch,max,item,top=-1,s[20]; 
+int top = -1;
+int stack[MAX_SIZE];
+
 void menu(void);
-void push(int); 
-int pop(void); 
-void display(void); 
+void push(int item);
+int pop(void);
+void display(void);
 
-void main() {
-
-    printf("ENTER STACK SIZE:"); scanf("%d",&max);
+int main() {
     menu();
-    getch();
+    return 0;
 }
 
+// Display menu and handle user choices
 void menu() {
-    printf("1.PUSH\n2.POP\n3.EXIT\n"); printf("ENTER YOUR CHOICE:");
-    fflush(stdin);
-    scanf("%d",&ch);
+    int choice, item;
 
-    switch(ch) {
+    printf("1. PUSH\n2. POP\n3. EXIT\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice) {
         case 1:
-            printf("ENTER THE ELEMENT\n"); 
-            scanf("%d",&item);
+            printf("Enter the element: ");
+            scanf("%d", &item);
             push(item);
-            menu();
-        break;
+            break;
 
         case 2:
-            item=pop(); 
-            menu();
-        break;
+            item = pop();
+            break;
 
         case 3:
             exit(0);
-        }
-}          
 
+        default:
+            printf("Invalid choice. Please enter a valid option.\n");
+    }
+
+    menu();
+}
+
+// Push an item onto the stack
 void push(int item) {
-    if(top==max-1)
-        printf("STACK IS OVER FLOW\n"); 
+    if (top == MAX_SIZE - 1)
+        printf("Stack is overflow\n");
     else {
         top++;
-        s[top]=item;
+        stack[top] = item;
     }
 
     display();
 }
 
+// Pop an item from the stack
 int pop() {
-    if(top==-1) {
-        printf("STACK IS UNDER FLOW\n"); 
+    int item;
+
+    if (top == -1) {
+        printf("Stack is underflow\n");
         return 0;
     } else {
-        item=s[top]; 
+        item = stack[top];
         top--;
     }
-    
-    display(); 
+
+    display();
     return item;
 }
 
+// Display the stack elements
 void display() {
     int i;
-    printf(" top -->");
 
-    for(i=top;i>=0;i--)
-        printf("%d \n \t",s[i]);
+    if (top == -1)
+        printf("Stack is empty\n");
+    else {
+        printf("Stack elements:\n");
+        printf("top --> ");
+
+        for (i = top; i >= 0; i--)
+            printf("%d\t", stack[i]);
+
+        printf("\n");
+    }
 }

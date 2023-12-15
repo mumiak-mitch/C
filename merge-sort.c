@@ -1,71 +1,84 @@
-/*Merge sort is a sorting algorithm that works by dividing
-an array into smaller subarrays, sorting each subarray, 
-and then merging the sorted subarrays back together 
-to the form of the final sorted array*/
-
 #include<stdio.h>
-#include<conio.h>
 
-void merge(int [],int ,int ,int );
-void part(int [],int ,int );
+void merge(int arr[], int min, int mid, int max);
+void divide(int arr[], int min, int max);
 
-int main(){
+int main() {
     int arr[30];
-    int i,size;
+    int i, size;
     
     printf("\n\t------- Merge sorting method -------\n\n");
-    printf("Enter total no. of elements : "); scanf("%d",&size);
+    printf("Enter total number of elements: ");
+    scanf("%d", &size);
     
-    for(i=0; i<size; i++) {
-        printf("Enter %d element : ",i+1);
-        scanf("%d",&arr[i]);
+    // Input the array elements
+    for (i = 0; i < size; i++) {
+        printf("Enter element %d: ", i + 1);
+        scanf("%d", &arr[i]);
     }
 
-    part(arr,0,size-1);
-    printf("\n\t------- Merge sorted elements -------\n\n"); 
-    
-    for(i=0; i<size; i++)
-        printf("%d ",arr[i]); 
-        getch();
+    // Call the divide function to start the merge sort
+    divide(arr, 0, size - 1);
+
+    printf("\n\t------- Merge sorted elements -------\n\n");
+
+    // Display the sorted array
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+
+    getchar(); // Wait for a key press
     return 0;
 }
 
-void part(int arr[],int min,int max) {
-    int mid; if(min<max) {
-        mid=(min+max)/2;
-        part(arr,min,mid);
-        part(arr,mid+1,max);
-        merge(arr,min,mid,max);
+// Function to merge two subarrays into a sorted array
+void merge(int arr[], int min, int mid, int max) {
+    int temp[30];
+    int i, j, k;
+    j = min;
+    k = mid + 1;
+
+    for (i = min; j <= mid && k <= max; i++) {
+        // Compare elements from both subarrays and merge
+        if (arr[j] <= arr[k]) {
+            temp[i] = arr[j];
+            j++;
+        } else {
+            temp[i] = arr[k];
+            k++;
+        }
+    }
+
+    // Copy the remaining elements from the first subarray
+    if (j > mid) {
+        for (; k <= max; i++, k++) {
+            temp[i] = arr[k];
+        }
+    } else {
+        // Copy the remaining elements from the second subarray
+        for (; j <= mid; i++, j++) {
+            temp[i] = arr[j];
+        }
+    }
+
+    // Copy the sorted elements back to the original array
+    for (i = min; i <= max; i++) {
+        arr[i] = temp[i];
     }
 }
 
-void merge(int arr[],int min,int mid,int max) {
-    int tmp[30];
-    int i,j,k,m;
-    j=min;
-    m=mid+1;
-
-    for(i=min; j<=mid && m<=max ; i++) {
-        if(arr[j]<=arr[m]) {
-            tmp[i]=arr[j];
-            j++;
-        } else {
-            tmp[i]=arr[m];
-            m++;
-        }
-    }
-
-    if(j>mid) {
-        for(k=m; k<=max; k++) {
-            tmp[i]=arr[k];
-            i++;
-        }
-    } else {
-        for(k=j; k<=mid; k++) {
-            tmp[i]=arr[k];
-            i++;
-        }
-    }
+// Function to divide the array into subarrays and recursively sort them
+void divide(int arr[], int min, int max) {
+    int mid;
     
-    for(k=min; k<=max; k++) arr[k]=tmp[k];
+    if (min < max) {
+        // Calculate the middle index
+        mid = (min + max) / 2;
+
+        // Recursively sort the left and right subarrays
+        divide(arr, min, mid);
+        divide(arr, mid + 1, max);
+
+        // Merge the sorted subarrays
+        merge(arr, min, mid, max);
+    }
 }

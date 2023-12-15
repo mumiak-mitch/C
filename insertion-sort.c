@@ -1,27 +1,34 @@
-//this is a simple sorting algorithm that builds the final sorted array(or list) one item at a time by comparisons
-
 #include<stdio.h>
-#include<conio.h>
 
 void main() {
-    int n,i,a[10],t,j;
+    int n, i, a[10], t, j;
 
-    printf("enter how many elements\n");
-    scanf("%d",&n);
-    printf("enter the elements\n");
+    // Input the number of elements
+    printf("Enter how many elements: ");
+    scanf("%d", &n);
 
-    for(i=0;i<n;i++)
-        scanf("%d",&a[i]);
-    
-    for(i=1;i<n;i++) {
-        for(j=i;j>0;j--) {
-            if(a[j]<a[j-1]) {
-                t=a[j]; a[j]=a[j-1]; a[j-1]=t;
-            } 
-        } 
+    // Input array elements
+    printf("Enter the elements:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    // Perform insertion sort
+    for (i = 1; i < n; i++) {
+        for (j = i; j > 0; j--) {
+            // Compare and swap if needed
+            if (a[j] < a[j - 1]) {
+                t = a[j];
+                a[j] = a[j - 1];
+                a[j - 1] = t;
+            }
+        }
     }
 
-    printf("the sorted elements are\n"); for(i=0;i<n;i++)
-    printf("%5d",a[i]);
-    getch();
+    // Display the sorted elements
+    printf("The sorted elements are:\n");
+    for (i = 0; i < n; i++)
+        printf("%5d", a[i]);
+
+    // Wait for a key press
+    getchar();
 }

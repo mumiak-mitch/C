@@ -1,87 +1,99 @@
-/*A circular queue is the extended version of a regular
-queue where the last element is connected to the 
-first element*/
+#include <stdio.h>
 
-#include<stdio.h>
-#include<conio.h>
 #define max 3
 
-int q[max],rear=-1,front=-1;
+// Circular Queue array and pointers for front and rear
+int q[max], rear = -1, front = -1;
 
-void main(){ 
+// Function prototypes
+void insert();   // Function to insert an element into the circular queue
+void delete();   // Function to delete an element from the circular queue
+void display();  // Function to display the elements in the circular queue
+
+int main() {
     int ch;
 
-    do{ 
-        printf("\nqueue implementation\n");
-        printf("1.insert 2.delete 3.display 4.exit\n");
-        printf("enter your choice\n");
-        scanf("%d",&ch);
- 
-        switch(ch){ 
+    do {
+        printf("\nQueue Implementation\n");
+        printf("1. Insert 2. Delete 3. Display 4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &ch);
+
+        switch (ch) {
             case 1:
-                insert(); 
-            break;
- 
+                insert();   // Call the insert function
+                break;
+
             case 2:
-                delete(); 
-            break;
+                delete();   // Call the delete function
+                break;
 
             case 3:
-                display(); 
-            break;
- 
+                display();  // Call the display function
+                break;
+
             case 4:
-                exit(1);
- 
+                return 0;
+
             default:
-                printf("wrong choice\n"); 
-            break;
+                printf("Wrong choice\n");
+                break;
         }
-    } while(ch<=4);
-        getch();
+    } while (ch <= 4);
+
+    return 0;
 }
 
-
-insert(){ 
+// Function to insert an element into the circular queue
+void insert() {
     int item;
 
-    if(rear==max-1){ 
-        printf("queue overflow\n"); 
-    } else { 
-        if(front==-1)
-        front=0;
-        printf("insert the element in queue:");
-        scanf("%d",&item);
+    // Check if the circular queue is full
+    if (rear == max - 1) {
+        printf("Queue overflow\n");
+    } else {
+        // If front is -1, set it to 0 indicating the first element
+        if (front == -1)
+            front = 0;
+
+        // Get the element from the user and insert it into the circular queue
+        printf("Insert the element in the queue: ");
+        scanf("%d", &item);
         rear++;
-        q[rear]=item;
+        q[rear] = item;
     }
 }
 
-delete(){ 
-    if(front==-1) { 
-        printf("queue underflow\n");
-    } else { 
-        printf("element deleted from queue is:%d\n",q[front]);
+// Function to delete an element from the circular queue
+void delete() {
+    // Check if the circular queue is empty
+    if (front == -1) {
+        printf("Queue underflow\n");
+    } else {
+        // Display and remove the element from the front of the circular queue
+        printf("Element deleted from the queue is: %d\n", q[front]);
         front++;
-    
-    if(front==max)
-        front=rear=-1;
+
+        // Reset front and rear if the circular queue becomes empty
+        if (front > rear)
+            front = rear = -1;
     }
 }
 
-display() { 
+// Function to display the elements in the circular queue
+void display() {
     int i;
 
-    if(front==-1) {
-        printf("queue is empty\n");
-    } else { 
-        printf("queue is :\n");
-    
-        for(i=front;;i++) { 
-            printf("%2d",q[i]);
-            if(i==rear)
- 
-        return;
-        } 
-    } 
+    // Check if the circular queue is empty
+    if (front == -1) {
+        printf("Queue is empty\n");
+    } else {
+        // Display the elements in the circular queue
+        printf("Queue is:\n");
+
+        for (i = front; i <= rear; i++) {
+            printf("%2d ", q[i]);
+        }
+        printf("\n");
+    }
 }
