@@ -28,3 +28,25 @@ Follow these steps to run a C file in the terminal:
    ```
 
 Replace `filename.c` with the name of your C source file.
+
+## Major Projects
+
+### 1. File Manipulation Tool
+
+The File Manipulation Tool provides basic file operations such as creating, reading, and appending text to a file.
+
+### 2. Number Guessing Game
+
+The Number Guessing Game is an interactive game where the user attempts to guess a randomly generated number.
+
+### 3. To-Do List Manager
+
+The To-Do List Manager allows users to manage their tasks by providing features to add, remove, and display tasks.
+
+### 4. Calculator
+
+The Calculator performs basic arithmetic operations (addition, subtraction, multiplication, division) based on user input.
+
+### 5. Temperature Converter
+
+The Temperature Converter converts temperatures between Celsius and Fahrenheit.
