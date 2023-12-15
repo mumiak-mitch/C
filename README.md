@@ -1,22 +1,30 @@
-# C Programming language
+# C Programming Language
 
-The above files illustrations for some common concepts in C
+This repository contains illustrations for some common concepts in the C programming language. It also covers various data structures, including structures, switch statements, unions, printf, and getchar functions. Additionally, common programming functions are demonstrated.
 
-There are also data structures included
+## Check Compiler Versions
 
-Structures, switch, union, printf, getchar
+Ensure that the compilers are installed on your system by checking their versions:
 
-Some common functions have also been used
-
-## Check if the compilers have been installed
-
+```bash
 gcc --version
 g++ --version
+```
 
-## Running a C file in the terminal
+## Running a C File in the Terminal
 
-Make it executable:
-gcc filename.c -o filename.exe
+Follow these steps to run a C file in the terminal:
 
-Run it:
-./filename.exe
+1. **Make it executable:**
+
+   ```bash
+   gcc filename.c -o filename.exe
+   ```
+
+2. **Run it:**
+
+   ```bash
+   ./filename.exe
+   ```
+
+Replace `filename.c` with the name of your C source file.
